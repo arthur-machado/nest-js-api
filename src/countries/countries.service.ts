@@ -21,4 +21,9 @@ export class CountriesService {
       });
     }
   }
+
+  async getCountries() {
+    this.loadCountries();
+    return await this.prisma.country.findMany();
+  }
 }

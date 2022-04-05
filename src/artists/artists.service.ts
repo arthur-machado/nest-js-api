@@ -1,16 +1,24 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
+import { CountriesService } from 'src/countries/countries.service';
 import { PrismaService } from 'src/prisma.service';
 import { CreateArtistDto } from './dto/create-artist.dto';
 import { UpdateArtistDto } from './dto/update-artist.dto';
 
 @Injectable()
 export class ArtistsService {
-  constructor(private prisma: PrismaService) {}
+  constructor(
+    private prisma: PrismaService,
+    private countriesService: CountriesService,
+  ) {}
 
-  create(createArtistDto: CreateArtistDto) {
+  async create(createArtistDto: CreateArtistDto) {
+    await this.countriesService.loadCountries();
     return this.prisma.artist.create({
       data: {
         ...createArtistDto,
+      },
+      include: {
+        country: true,
       },
     });
   }
@@ -54,6 +62,9 @@ export class ArtistsService {
       },
       where: {
         id,
+      },
+      include: {
+        country: true,
       },
     });
   }
