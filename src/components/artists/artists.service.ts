@@ -1,5 +1,5 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
-import { CountriesService } from 'src/countries/countries.service';
+import { CountriesService } from 'src/components/countries/countries.service';
 import { PrismaService } from 'src/prisma.service';
 import { CreateArtistDto } from './dto/create-artist.dto';
 import { UpdateArtistDto } from './dto/update-artist.dto';

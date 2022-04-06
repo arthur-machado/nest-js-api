@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { PrismaService } from 'src/prisma.service';
 
-import { countries } from '../utils/countries';
+import { countries } from '../../utils/countries';
 
 @Injectable()
 export class CountriesService {
