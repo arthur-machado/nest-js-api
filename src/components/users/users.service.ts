@@ -13,6 +13,9 @@ export class UsersService {
       where: {
         username,
       },
+      include: {
+        role: true,
+      },
     });
   }
 
@@ -27,6 +30,7 @@ export class UsersService {
         username: true,
         email: true,
         createdAt: true,
+        role: true,
         updatedAt: true,
         active: true,
         password: false,

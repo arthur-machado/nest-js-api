@@ -31,7 +31,7 @@ export class ArtistsService {
     });
   }
 
-  findOne(id: number) {
+  findOne(id: string) {
     return this.prisma.artist.findFirst({
       where: {
         id,
@@ -43,7 +43,7 @@ export class ArtistsService {
     });
   }
 
-  async update(id: number, updateArtistDto: UpdateArtistDto) {
+  async update(id: string, updateArtistDto: UpdateArtistDto) {
     const artist = await this.prisma.artist.findFirst({
       where: {
         id,
@@ -69,7 +69,7 @@ export class ArtistsService {
     });
   }
 
-  remove(id: number) {
+  remove(id: string) {
     return this.prisma.artist.update({
       data: {
         active: false,
