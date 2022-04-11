@@ -27,6 +27,11 @@ export class ArtistsService {
     return this.prisma.artist.findMany({
       include: {
         country: true,
+        images: {
+          select: {
+            url: true,
+          },
+        },
       },
     });
   }
@@ -39,6 +44,11 @@ export class ArtistsService {
       },
       include: {
         country: true,
+        images: {
+          select: {
+            url: true,
+          },
+        },
       },
     });
   }

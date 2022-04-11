@@ -9,9 +9,10 @@ import { AuthModule } from './components/auth/auth.module';
 import { UsersModule } from './components/users/users.module';
 import { APP_GUARD } from '@nestjs/core';
 import { JwtAuthGuard } from './components/auth/jwt-auth.guard';
+import { TracksModule } from './components/tracks/tracks.module';
 
 @Module({
-  imports: [ArtistsModule, CountriesModule, AuthModule, UsersModule],
+  imports: [ArtistsModule, CountriesModule, AuthModule, UsersModule, TracksModule],
   controllers: [AppController],
   providers: [
     AppService,
