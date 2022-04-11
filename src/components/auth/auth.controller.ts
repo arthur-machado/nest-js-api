@@ -1,4 +1,4 @@
-import { Controller, Post, UseGuards, Request } from '@nestjs/common';
+import { Controller, Post, UseGuards, Request, HttpCode } from '@nestjs/common';
 import { AuthService } from './auth.service';
 import { LocalAuthGuard } from './local-auth.guard';
 import { SkipAuth } from './public-metadata';
@@ -9,6 +9,7 @@ export class AuthController {
 
   @SkipAuth()
   @UseGuards(LocalAuthGuard)
+  @HttpCode(200)
   @Post('login')
   async login(@Request() req) {
     return this.authService.login(req.user);
