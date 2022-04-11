@@ -27,7 +27,7 @@ export class TracksController {
 
   @Get(':id')
   findOne(@Param('id') id: string) {
-    return this.tracksService.findOne(+id);
+    return this.tracksService.findOne(id);
   }
 
   @Patch(':id')
