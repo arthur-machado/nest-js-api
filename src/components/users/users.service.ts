@@ -8,13 +8,10 @@ import { hashPassword } from '../../utils/bcrypt';
 export class UsersService {
   constructor(private prisma: PrismaService) {}
 
-  async findOne(username: string): Promise<any> {
+  async findOne(email: string): Promise<any> {
     return await this.prisma.user.findFirst({
       where: {
-        username,
-      },
-      include: {
-        role: true,
+        email,
       },
     });
   }
@@ -27,10 +24,9 @@ export class UsersService {
       },
       select: {
         id: true,
-        username: true,
+        name: true,
         email: true,
         createdAt: true,
-        role: true,
         updatedAt: true,
         active: true,
         password: false,

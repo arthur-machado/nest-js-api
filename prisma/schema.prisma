@@ -29,7 +29,7 @@ model Country {
 
 model User {
   id        String   @id @default(uuid())
-  username  String
+  name      String
   email     String   @unique
   password  String
   createdAt DateTime @default(now())
