@@ -53,6 +53,26 @@ export class ArtistsService {
     });
   }
 
+  findAlbums(id: string) {
+    return this.prisma.artist.findFirst({
+      where: {
+        id,
+        active: true,
+      },
+      include: {
+        albums: {
+          select: {
+            id: true,
+            name: true,
+            year: true,
+            active: true,
+            cover: true,
+          },
+        },
+      },
+    });
+  }
+
   async update(id: string, updateArtistDto: UpdateArtistDto) {
     const artist = await this.prisma.artist.findFirst({
       where: {

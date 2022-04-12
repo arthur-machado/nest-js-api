@@ -30,6 +30,11 @@ export class ArtistsController {
     return this.artistsService.findOne(id);
   }
 
+  @Get(':id/albums')
+  findAlbums(@Param('id') id: string) {
+    return this.artistsService.findAlbums(id);
+  }
+
   @Put(':id')
   update(@Param('id') id: string, @Body() updateArtistDto: UpdateArtistDto) {
     return this.artistsService.update(id, updateArtistDto);

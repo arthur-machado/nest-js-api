@@ -11,15 +11,16 @@ datasource db {
 }
 
 model Artist {
-  id        String   @id @default(uuid())
-  name      String   @unique
-  country   Country  @relation(fields: [countryId], references: [id])
+  id        String        @id @default(uuid())
+  name      String        @unique
+  country   Country       @relation(fields: [countryId], references: [id])
   countryId Int
-  createdAt DateTime @default(now())
-  updatedAt DateTime @default(now())
-  active    Boolean  @default(true)
+  createdAt DateTime      @default(now())
+  updatedAt DateTime      @default(now())
+  active    Boolean       @default(true)
   tracks    Track[]
-  images    Image[]
+  images    ArtistImage[]
+  albums    Album[]
 }
 
 model Country {
@@ -39,17 +40,33 @@ model User {
   active    Boolean  @default(true)
 }
 
-model Track {
+model Album {
   id        String   @id @default(uuid())
   name      String
-  artist    Artist   @relation(fields: [artistId], references: [id])
+  year      Int
   artistId  String
+  artist    Artist   @relation(fields: [artistId], references: [id])
   createdAt DateTime @default(now())
   updatedAt DateTime @default(now())
   active    Boolean  @default(true)
+  tracks    Track[]
+  cover     String
 }
 
-model Image {
+model Track {
+  id         String   @id @default(uuid())
+  name       String
+  artist     Artist   @relation(fields: [artistId], references: [id])
+  artistId   String
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @default(now())
+  active     Boolean  @default(true)
+  Album      Album?   @relation(fields: [albumId], references: [id])
+  albumId    String?
+  trackOrder Int
+}
+
+model ArtistImage {
   id        String   @id @default(uuid())
   url       String
   Artist    Artist   @relation(fields: [artistId], references: [id])

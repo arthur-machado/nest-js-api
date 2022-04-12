@@ -10,6 +10,7 @@ export class TracksService {
       data: {
         name: createTrackDto.trackName,
         artistId: createTrackDto.artistId,
+        trackOrder: createTrackDto.trackOrder,
       },
       select: {
         id: true,
